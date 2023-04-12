@@ -1,0 +1,84 @@
+{% extends "web/base.html" %}
+{% load static %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+
+<h1>DashBoard</h1>
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Tabla de datos
+                        </div>
+                        <table style="width: 100%">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Puntos</th>
+                            </tr>
+                            {% for item in pointList %}
+                            <tr>
+                                <td>{{item.date}}</td>
+                                <td>{{item.points}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Chart</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="myAreaChart"></canvas>
+            </div>
+        </div>
+</div>
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Average</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{% if promedio %}
+                                                                                <p>El Promedio de puntaje es de: {{ promedio }}</p>
+                                                                            {% else %}
+                                                                                <p>No se encontró promedio</p>
+                                                                            {% endif %}
+                    </div>
+                    <div class="col-auto">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block localscripts %}
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+
+{% endblock %}
+</html>
